@@ -7,6 +7,9 @@ class OrdersController < ApplicationController
 
     # Only show orders in the past
     @orders = order_query.where("order_date < DATETIME('now')").all
+    # Business Question: "Are future-dated orders valid in your system?
+    # This could be for pre-orders, scheduled deliveries, or data entry errors."
+    # The fix depends on business requirements, but I simply updated Order record's date/year value from 2029 to 2024
   end
 
   # GET /orders/1 or /orders/1.json
